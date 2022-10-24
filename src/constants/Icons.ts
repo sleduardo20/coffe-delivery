@@ -1,0 +1,31 @@
+import {
+  MapPin,
+  MapPinLine,
+  TrashSimple,
+  CurrencyDollar,
+  ShoppingCart,
+  Timer,
+  Package,
+  Coffee,
+  Plus,
+  Minus,
+  CreditCard,
+  Money,
+  Bank,
+} from 'phosphor-react';
+
+export {
+  MapPin,
+  MapPinLine,
+  TrashSimple,
+  CurrencyDollar,
+  ShoppingCart,
+  Timer,
+  Package,
+  Coffee,
+  Plus,
+  Minus,
+  CreditCard,
+  Money,
+  Bank,
+};
