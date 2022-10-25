@@ -6,24 +6,31 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0 ;
     box-sizing: border-box;
   }
+  
   :focus{
     outline: 0;
+  }
 
   html {
     font-size: 62.5%;
   }
 
-  input,button {
-    outline: none;
+  button {
+    cursor: pointer;
+  }
 
+  input,button {
+    border: none;
+    outline: none;
   }
     
-  }
+  
   body {
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
     -webkit-font-smoothing: antialiased;
   }
+  
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
