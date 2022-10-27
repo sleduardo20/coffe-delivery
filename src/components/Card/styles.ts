@@ -18,10 +18,12 @@ export const CardContainer = styled.div`
 
 export const Tags = styled.div`
   margin-bottom: 1.6rem;
+  display: flex;
+  gap: 0.8rem;
 `;
 
 export const Tag = styled.div`
-  width: 8rem;
+  width: max-content;
   height: 2rem;
   border-radius: 0.8rem;
   padding: 0.4rem 0.8rem;

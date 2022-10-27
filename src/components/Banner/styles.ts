@@ -12,8 +12,8 @@ export const BannerContainer = styled.section`
 export const ContentBanner = styled(Wrapper)`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5.6rem;
+  justify-content: space-between;
+  padding: 0 1.6rem;
 `;
 
 export const Info = styled.div`

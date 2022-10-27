@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ActionButton,
   AddCardButton,
@@ -10,27 +11,35 @@ import {
   Tags,
 } from './styles';
 
-import mock from './mock';
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
-import { useState } from 'react';
 
-export function Card() {
+interface Props {
+  image: string;
+  name: string;
+  description: string;
+  price: string;
+  tags: string[];
+}
+
+export function Card({ description, image, name, price, tags }: Props) {
   const [quantity, setQuantity] = useState(0);
   return (
     <CardContainer>
-      <img src={mock.image} alt="" />
+      <img src={image} alt="" />
 
       <Tags>
-        <Tag>{mock.tags[0]}</Tag>
+        {tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
       </Tags>
 
-      <CoffeName>{mock.name} </CoffeName>
-      <CoffeDescription>{mock.description} </CoffeDescription>
+      <CoffeName>{name} </CoffeName>
+      <CoffeDescription>{description} </CoffeDescription>
 
       <Footer>
         <Price>
           <span>R$</span>
-          <strong>{mock.price}</strong>
+          <strong>{price}</strong>
         </Price>
 
         <ActionButton>
