@@ -13,7 +13,7 @@ export const ContentBanner = styled(Wrapper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.6rem;
+  padding: 0 1.6rem 1.6rem 1.6rem;
 `;
 
 export const Info = styled.div`
@@ -34,7 +34,11 @@ export const Info = styled.div`
   }
 `;
 
-export const BannerImage = styled.img``;
+export const BannerImage = styled.img`
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
 
 export const Skills = styled.div`
   margin-top: 6.4rem;
@@ -42,6 +46,10 @@ export const Skills = styled.div`
   grid-template-columns: 23.2rem 23.2rem;
   column-gap: 4rem;
   row-gap: 2rem;
+
+  @media (max-width: 680px) {
+    grid-template-columns: 23.2rem;
+  }
 `;
 
 export const SkillItem = styled.div<{

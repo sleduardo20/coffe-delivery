@@ -22,7 +22,7 @@ export function Home() {
 
 const CoffeSection = styled(Wrapper)`
   margin-top: 4.8rem;
-  padding: 0 1.6rem;
+  padding: 0 1.6rem 1.6rem 1.6rem;
 
   h3 {
     font-size: 3.2rem;
@@ -37,4 +37,17 @@ const CoffeList = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 25.6rem);
   gap: 6rem;
+  justify-items: center;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(3, 25.6rem);
+  }
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, 25.6rem);
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
 `;
