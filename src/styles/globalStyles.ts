@@ -23,6 +23,29 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     outline: none;
   }
+
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color:${({ theme }) => theme.yellowDark} ${({ theme }) =>
+  theme.white};
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background:${({ theme }) => theme.white};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color:${({ theme }) => theme.yellowDark};
+    border-radius: 10px;
+    border: 3px solid ${({ theme }) => theme.white};;
+  }
     
   
   body {
