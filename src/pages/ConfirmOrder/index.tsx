@@ -6,6 +6,7 @@ import {
   Money,
 } from 'phosphor-react';
 import { useState } from 'react';
+import { CoffesSelected } from '../../components/CoffesSelected';
 import { Input } from '../../components/Input';
 import {
   CoffesSelectedSection,
@@ -112,7 +113,7 @@ export function ConfirmOrder() {
         <CoffesSelectedSection>
           <h3>Cafés selecionados</h3>
           <ConfirmItems>
-            <p>items e botao para confirmar</p>
+            <CoffesSelected />
           </ConfirmItems>
         </CoffesSelectedSection>
       </FormWrapper>

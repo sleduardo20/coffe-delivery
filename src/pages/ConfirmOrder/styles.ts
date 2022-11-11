@@ -31,13 +31,6 @@ const DefaultStyles = css`
 
 export const CoffesSelectedSection = styled.section``;
 
-export const ConfirmItems = styled.div`
-  width: 44.8rem;
-  height: 49.8rem;
-  border-radius: 0.6rem 4.4rem 0.6rem 4.4rem;
-  background: ${({ theme }) => theme.card};
-`;
-
 export const DeliverySection = styled.div`
   ${DefaultStyles}
 `;
@@ -79,4 +72,12 @@ export const Field = styled.div`
 export const Payment = styled.section`
   ${DefaultStyles}
   margin-top: 1.2rem;
+`;
+
+export const ConfirmItems = styled.div`
+  width: 44.8rem;
+  height: 49.8rem;
+  border-radius: 0.6rem 4.4rem 0.6rem 4.4rem;
+  background: ${({ theme }) => theme.card};
+  padding: 4rem;
 `;

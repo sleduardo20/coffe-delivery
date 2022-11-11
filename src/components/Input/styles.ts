@@ -32,10 +32,8 @@ export const InputContainer = styled.div<InputContainerProps>`
     $inputType === 'radio' ? '17.8rem' : $width ? `${$width}px` : '100%'};
 
   border: 0.1rem solid
-    ${({ theme, $isFocused }) => ($isFocused ? theme.purple : theme.button)};
-
-  border: 0.1rem solid
-    ${({ theme, $checked }) => ($checked ? theme.purpleDark : theme.button)};
+    ${({ theme, $isFocused, $checked }) =>
+      $isFocused || $checked ? theme.purple : theme.button};
 
   input {
     width: 100%;
