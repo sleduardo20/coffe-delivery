@@ -22,7 +22,6 @@ export function Home() {
 
 const CoffeSection = styled(Wrapper)`
   margin-top: 4.8rem;
-  padding: 0 1.6rem 1.6rem 1.6rem;
 
   h3 {
     font-size: 3.2rem;

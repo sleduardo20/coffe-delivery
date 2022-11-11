@@ -1,10 +1,11 @@
 import { MapPin, ShoppingCart } from 'phosphor-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logoCoffeDelivery from '../../assets/logo.svg';
 import { Wrapper } from '../Wrapper';
 
 export function Header() {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <HeaderContainer>
@@ -18,7 +19,10 @@ export function Header() {
             <span>Porto Alegre, RS</span>
           </Location>
 
-          <CardButton>
+          <CardButton
+            title="Confirmar Pedido"
+            onClick={() => navigate('/confirmOrder')}
+          >
             <ShoppingCart weight="fill" size={22} />
 
             <small>20</small>

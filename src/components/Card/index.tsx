@@ -56,7 +56,7 @@ export function Card({ description, image, name, price, tags }: Props) {
           />
         </ActionButton>
 
-        <AddCardButton>
+        <AddCardButton title="Adicionar no carrinho">
           <ShoppingCart weight="fill" size={24} />
         </AddCardButton>
       </Footer>

@@ -13,7 +13,6 @@ export const ContentBanner = styled(Wrapper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.6rem 1.6rem 1.6rem;
 `;
 
 export const Info = styled.div`
