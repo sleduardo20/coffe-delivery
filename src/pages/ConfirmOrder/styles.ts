@@ -81,3 +81,40 @@ export const ConfirmItems = styled.div`
   background: ${({ theme }) => theme.card};
   padding: 4rem;
 `;
+
+export const Total = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: ${({ theme }) => theme.text};
+  margin-bottom: 1.2rem;
+
+  span {
+    font-size: 1.4rem;
+    line-height: 1.82rem;
+  }
+
+  strong {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    color: ${({ theme }) => theme.subTitle};
+  }
+`;
+
+export const ConfirmOrderButton = styled.button`
+  margin-top: 1.2rem;
+  background: ${({ theme }) => theme.yellow};
+  border-radius: 0.6rem;
+  width: 100%;
+  height: 4.6rem;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.white};
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 1.2rem 0.8rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.yellowDark};
+  }
+`;

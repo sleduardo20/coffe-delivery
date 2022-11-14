@@ -7,14 +7,10 @@ export function CoffesSelected() {
   return (
     <CoffesSelectedContainer>
       {mockCoffesSelected.map((coffe) => (
-        <>
-          <CoffeItem
-            key={coffe.name}
-            {...coffe}
-            removeCoffe={() => console.log('remover')}
-          />
+        <div key={coffe.name}>
+          <CoffeItem {...coffe} removeCoffe={() => console.log('remover')} />
           <Divider />
-        </>
+        </div>
       ))}
     </CoffesSelectedContainer>
   );

@@ -11,6 +11,7 @@ import { Input } from '../../components/Input';
 import {
   CoffesSelectedSection,
   ConfirmItems,
+  ConfirmOrderButton,
   ConfirmOrderContainer,
   DeliverySection,
   Field,
@@ -18,6 +19,7 @@ import {
   FormWrapper,
   Payment,
   Title,
+  Total,
 } from './styles';
 
 enum FormPayments {
@@ -114,6 +116,19 @@ export function ConfirmOrder() {
           <h3>Cafés selecionados</h3>
           <ConfirmItems>
             <CoffesSelected />
+            <Total>
+              <span>Total de Itens</span>
+              <span>R$ 29,70</span>
+            </Total>
+            <Total>
+              <span>Entrega</span>
+              <span>R$ 3,70</span>
+            </Total>
+            <Total>
+              <strong>Total</strong>
+              <strong>R$ 3,70</strong>
+            </Total>
+            <ConfirmOrderButton>Confirmar Pedido</ConfirmOrderButton>
           </ConfirmItems>
         </CoffesSelectedSection>
       </FormWrapper>
