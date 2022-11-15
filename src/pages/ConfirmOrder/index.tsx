@@ -6,6 +6,7 @@ import {
   Money,
 } from 'phosphor-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CoffesSelected } from '../../components/CoffesSelected';
 import { Input } from '../../components/Input';
 import {
@@ -30,10 +31,15 @@ enum FormPayments {
 
 export function ConfirmOrder() {
   const [radioInputValue, setRadioInputValue] = useState<FormPayments>();
+  const navigate = useNavigate();
+
+  const createOrder = () => {
+    navigate('/confirmedOrder');
+  };
 
   return (
     <ConfirmOrderContainer>
-      <FormWrapper>
+      <FormWrapper onSubmit={createOrder}>
         <FinisherOrderSection>
           <h3>Complete seu pedido</h3>
           <DeliverySection>
@@ -128,7 +134,9 @@ export function ConfirmOrder() {
               <strong>Total</strong>
               <strong>R$ 3,70</strong>
             </Total>
-            <ConfirmOrderButton>Confirmar Pedido</ConfirmOrderButton>
+            <ConfirmOrderButton type="submit">
+              Confirmar Pedido
+            </ConfirmOrderButton>
           </ConfirmItems>
         </CoffesSelectedSection>
       </FormWrapper>

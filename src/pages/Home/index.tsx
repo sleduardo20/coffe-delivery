@@ -3,15 +3,36 @@ import { Banner } from '../../components/Banner';
 import { Wrapper } from '../../components/Wrapper';
 import styled from 'styled-components';
 import mock from './mock';
+import { useCoffesContext } from '../../contexts/useCoffes';
+import { useEffect } from 'react';
+import { getCoffeImages } from '../../utils/getCoffeImages';
+import { COFFE_TYPES } from '../../constants/CoffeTypes';
 
 export function Home() {
+  const { coffes, setCurrentCoffes } = useCoffesContext();
+
+  console.log(coffes);
+
+  useEffect(() => {
+    const currentCoffes = mock.map((coffe) => ({
+      name: coffe.name,
+      quantity: 0,
+      price: Number(coffe.price),
+      image: getCoffeImages(coffe.image as COFFE_TYPES) as string,
+      description: coffe.description,
+      tags: coffe.tags,
+    }));
+
+    setCurrentCoffes(currentCoffes);
+  }, []);
+
   return (
     <>
       <Banner />
       <CoffeSection>
         <h3>Nossos cafés</h3>
         <CoffeList>
-          {mock.map((coffe) => (
+          {coffes.map((coffe) => (
             <Card key={coffe.name} {...coffe} />
           ))}
         </CoffeList>

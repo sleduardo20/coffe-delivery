@@ -17,7 +17,7 @@ interface Props {
   image: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   tags: string[];
 }
 
