@@ -1,4 +1,7 @@
-export default [
+import { COFFE_TYPES } from '../../constants/CoffeTypes';
+import { getCoffeImages } from '../../utils/getCoffeImages';
+
+const mock = [
   {
     name: 'expresso tradicional',
     image: 'expresso',
@@ -102,3 +105,12 @@ export default [
     price: '9.90',
   },
 ];
+
+export const availableCoffes = mock.map((coffe) => ({
+  name: coffe.name,
+  quantity: 0,
+  price: Number(coffe.price),
+  image: getCoffeImages(coffe.image as COFFE_TYPES).toString(),
+  description: coffe.description,
+  tags: coffe.tags,
+}));
