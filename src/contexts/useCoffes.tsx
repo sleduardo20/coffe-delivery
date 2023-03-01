@@ -1,16 +1,16 @@
 import { createContext, useContext, useReducer } from 'react';
-import {
-  addToCardAction,
-  removeFromCardAction,
-  setCurrentCoffesAction,
-} from '../reducer/actions';
-import { Coffe, coffeReducer } from '../reducer/coffeReducer';
+import { addToCardAction, removeFromCardAction } from '../reducer/actions';
+import { CoffeState, coffeReducer } from '../reducer/coffeReducer';
 
 interface CoffeContextProps {
-  coffes: Coffe[];
-  addToCard: (coffe: Coffe) => void;
+  coffes: {
+    name: string;
+    quantity: number;
+    price: number;
+    image: string;
+  }[];
+  addToCard: (coffe: CoffeState) => void;
   removeFromCard: (name: string) => void;
-  setCurrentCoffes: (coffes: Coffe[]) => void;
 }
 
 const CoffeContextData = createContext({} as CoffeContextProps);
@@ -22,13 +22,10 @@ interface CoffeProviderProps {
 export const CoffesProvider = ({ children }: CoffeProviderProps) => {
   const [state, dispatch] = useReducer(coffeReducer, { coffes: [] });
 
-  const addToCard = (coffe: Coffe) => dispatch(addToCardAction(coffe));
+  const addToCard = (coffe: CoffeState) => dispatch(addToCardAction(coffe));
 
   const removeFromCard = (coffename: string) =>
     dispatch(removeFromCardAction(coffename));
-
-  const setCurrentCoffes = (coffes: Coffe[]) =>
-    dispatch(setCurrentCoffesAction(coffes));
 
   return (
     <CoffeContextData.Provider
@@ -36,7 +33,6 @@ export const CoffesProvider = ({ children }: CoffeProviderProps) => {
         coffes: state.coffes,
         addToCard,
         removeFromCard,
-        setCurrentCoffes,
       }}
     >
       {children}
