@@ -2,10 +2,14 @@ import { MapPin, ShoppingCart } from 'phosphor-react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logoCoffeDelivery from '../../assets/logo.svg';
+import { useCoffesContext } from '../../contexts/useCoffes';
 import { Wrapper } from '../Wrapper';
 
 export function Header() {
   const navigate = useNavigate();
+  const { coffes } = useCoffesContext();
+
+  const totalCoffes = coffes.length;
   return (
     <Wrapper>
       <HeaderContainer>
@@ -25,7 +29,7 @@ export function Header() {
           >
             <ShoppingCart weight="fill" size={22} />
 
-            <small>20</small>
+            <small>{totalCoffes}</small>
           </CardButton>
         </SideRigth>
       </HeaderContainer>

@@ -77,7 +77,7 @@ export const Price = styled.div`
   }
 `;
 
-export const ActionButton = styled.div`
+export const ActionButton = styled.div<{ $emptyQuantity: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,6 +91,13 @@ export const ActionButton = styled.div`
   svg {
     cursor: pointer;
     fill: ${({ theme }) => theme.purple};
+  }
+
+  svg:first-child {
+    cursor: ${({ $emptyQuantity }) =>
+      $emptyQuantity ? 'not-allowed' : 'pointer'};
+    fill: ${({ theme, $emptyQuantity }) =>
+      $emptyQuantity ? theme.label : theme.purple};
   }
 `;
 

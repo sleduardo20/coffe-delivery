@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ActionButton,
   AddCardButton,
@@ -10,8 +10,8 @@ import {
   Tag,
   Tags,
 } from './styles';
-
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
+import { useCoffesContext } from '../../contexts/useCoffes';
 
 interface Props {
   image: string;
@@ -23,6 +23,24 @@ interface Props {
 
 export function Card({ description, image, name, price, tags }: Props) {
   const [quantity, setQuantity] = useState(0);
+
+  const { addToCard } = useCoffesContext();
+
+  useEffect(() => {
+    if (quantity <= 0) {
+      setQuantity(0);
+    }
+  }, [quantity]);
+
+  const emptyQuantity = quantity === 0;
+
+  const coffe = {
+    name,
+    quantity,
+    price,
+    image,
+  };
+
   return (
     <CardContainer>
       <img src={image} alt="" />
@@ -42,21 +60,24 @@ export function Card({ description, image, name, price, tags }: Props) {
           <strong>{price}</strong>
         </Price>
 
-        <ActionButton>
+        <ActionButton $emptyQuantity={emptyQuantity}>
           <Minus
             weight="fill"
             size={14}
-            onClick={() => setQuantity(quantity - 1)}
+            onClick={() => setQuantity((state) => state - 1)}
           />
           <span>{quantity}</span>
           <Plus
             weight="fill"
             size={14}
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => setQuantity((state) => state + 1)}
           />
         </ActionButton>
 
-        <AddCardButton title="Adicionar no carrinho">
+        <AddCardButton
+          title="Adicionar no carrinho"
+          onClick={() => addToCard(coffe)}
+        >
           <ShoppingCart weight="fill" size={24} />
         </AddCardButton>
       </Footer>
