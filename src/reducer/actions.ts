@@ -1,3 +1,5 @@
+import { CoffeState } from './coffeReducer';
+
 export enum ACTION_TYPES {
   SET_CURRENT_COFFES = 'SET_CURRENT_COFFES',
   ADD_TO_CARD = 'ADD_TO_CARD',
@@ -23,7 +25,7 @@ export const setCurrentCoffesAction = (coffes: Coffe[]) => {
     },
   };
 };
-export const addToCardAction = (coffe: Coffe) => {
+export const addToCardAction = (coffe: CoffeState) => {
   return {
     type: ACTION_TYPES.ADD_TO_CARD,
     payload: {
@@ -59,5 +61,5 @@ interface RemoveQuantity {
 
 export type Action = {
   type: ACTION_TYPES;
-  payload?: any;
+  payload: any;
 };

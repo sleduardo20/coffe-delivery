@@ -10,8 +10,15 @@ export interface Coffe {
   tags: string[];
 }
 
+export interface CoffeState {
+  name: string;
+  quantity: number;
+  price: number;
+  image: string;
+}
+
 interface State {
-  coffes: Coffe[];
+  coffes: CoffeState[];
 }
 
 export const coffeReducer = (state: State, action: Action) => {
@@ -25,10 +32,6 @@ export const coffeReducer = (state: State, action: Action) => {
         draft.coffes.filter((coffe) => coffe.name !== action.payload.coffename);
       });
 
-    case ACTION_TYPES.SET_CURRENT_COFFES:
-      return produce(state, (draft) => {
-        draft.coffes = action.payload.coffes;
-      });
     default: {
       return state;
     }
