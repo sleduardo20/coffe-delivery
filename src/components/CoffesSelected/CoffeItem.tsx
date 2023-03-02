@@ -1,20 +1,25 @@
 import { Minus, Plus, Trash } from 'phosphor-react';
-import { useState } from 'react';
 import styled from 'styled-components';
+import { formatedPrice } from '../../utils/formatValues';
 
 interface Props {
   name: string;
   image: string;
-  price: string;
+  price: number;
+  quantity: number;
   removeCoffe: () => void;
 }
 
-export function CoffeItem({ name, image, price, removeCoffe }: Props) {
-  const [quantity, setQuantity] = useState(0);
+export function CoffeItem({
+  name,
+  image,
+  quantity,
+  price,
+  removeCoffe,
+}: Props) {
   return (
     <CoffeItemContainer>
       <img src={image} alt="Image do cafe" />
-
       <Details>
         <Info>
           <Description>{name}</Description>
@@ -23,14 +28,10 @@ export function CoffeItem({ name, image, price, removeCoffe }: Props) {
               <Minus
                 weight="fill"
                 size={14}
-                onClick={() => setQuantity(quantity - 1)}
+                onClick={() => console.log('ok')}
               />
               <span>{quantity}</span>
-              <Plus
-                weight="fill"
-                size={14}
-                onClick={() => setQuantity(quantity + 1)}
-              />
+              <Plus weight="fill" size={14} onClick={() => console.log('ok')} />
             </AddRemoveQuantityButton>
             <RemoveCoffeButton type="button" onClick={removeCoffe}>
               <Trash size={16} />
@@ -39,7 +40,7 @@ export function CoffeItem({ name, image, price, removeCoffe }: Props) {
           </ActionsButton>
         </Info>
       </Details>
-      <Price>R$ {price}</Price>
+      <Price>{formatedPrice(price)}</Price>
     </CoffeItemContainer>
   );
 }

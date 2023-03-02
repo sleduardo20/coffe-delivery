@@ -14,6 +14,7 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { useCoffesContext } from '../../contexts/useCoffes';
 
 interface Props {
+  id: string;
   image: string;
   name: string;
   description: string;
@@ -21,7 +22,7 @@ interface Props {
   tags: string[];
 }
 
-export function Card({ description, image, name, price, tags }: Props) {
+export function Card({ id, description, image, name, price, tags }: Props) {
   const [quantity, setQuantity] = useState(0);
 
   const { addToCard } = useCoffesContext();
@@ -35,6 +36,7 @@ export function Card({ description, image, name, price, tags }: Props) {
   const emptyQuantity = quantity === 0;
 
   const coffe = {
+    id,
     name,
     quantity,
     price,

@@ -9,6 +9,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CoffesSelected } from '../../components/CoffesSelected';
 import { Input } from '../../components/Input';
+import { useCoffesContext } from '../../contexts/useCoffes';
+import { sumCoffeValues } from '../../utils/formatValues';
+
 import {
   CoffesSelectedSection,
   ConfirmItems,
@@ -31,6 +34,7 @@ enum FormPayments {
 
 export function ConfirmOrder() {
   const [radioInputValue, setRadioInputValue] = useState<FormPayments>();
+  const { coffes } = useCoffesContext();
   const navigate = useNavigate();
 
   const createOrder = () => {
@@ -124,7 +128,7 @@ export function ConfirmOrder() {
             <CoffesSelected />
             <Total>
               <span>Total de Itens</span>
-              <span>R$ 29,70</span>
+              <span>{sumCoffeValues(coffes)}</span>
             </Total>
             <Total>
               <span>Entrega</span>
@@ -132,7 +136,7 @@ export function ConfirmOrder() {
             </Total>
             <Total>
               <strong>Total</strong>
-              <strong>R$ 3,70</strong>
+              <strong>{sumCoffeValues(coffes)}</strong>
             </Total>
             <ConfirmOrderButton type="submit">
               Confirmar Pedido

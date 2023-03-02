@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { useCoffesContext } from '../../contexts/useCoffes';
 import { CoffeItem } from './CoffeItem';
 
-import mockCoffesSelected from './mock';
-
 export function CoffesSelected() {
+  const { coffes, removeFromCard } = useCoffesContext();
+
   return (
     <CoffesSelectedContainer>
-      {mockCoffesSelected.map((coffe) => (
+      {coffes.map((coffe) => (
         <div key={coffe.name}>
-          <CoffeItem {...coffe} removeCoffe={() => console.log('remover')} />
+          <CoffeItem {...coffe} removeCoffe={() => removeFromCard(coffe.id)} />
           <Divider />
         </div>
       ))}

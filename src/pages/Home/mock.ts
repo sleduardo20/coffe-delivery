@@ -3,6 +3,7 @@ import { getCoffeImages } from '../../utils/getCoffeImages';
 
 const mock = [
   {
+    id: '01',
     name: 'expresso tradicional',
     image: 'expresso',
     tags: ['tradicional', 'especial'],
@@ -10,6 +11,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '02',
     name: 'expresso americano',
     image: 'americano',
     tags: ['tradicional'],
@@ -17,6 +19,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '03',
     name: 'expresso cremoso',
     image: 'expressocremoso',
     tags: ['tradicional'],
@@ -24,6 +27,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '04',
     name: 'expresso gelado',
     image: 'cafegelado',
     tags: ['tradicional', 'gelado'],
@@ -31,6 +35,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '05',
     name: 'café com leite',
     image: 'cafecomleite',
     tags: ['tradicional', 'com leite'],
@@ -38,6 +43,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '06',
     name: 'latte',
     image: 'latte',
     tags: ['tradicional', 'com leite'],
@@ -46,6 +52,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '07',
     name: 'capuccino',
     image: 'capuccino',
     tags: ['tradicional', 'com leite'],
@@ -54,6 +61,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '08',
     name: 'macchiato',
     image: 'macchiato',
     tags: ['tradicional', 'com leite'],
@@ -62,6 +70,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '09',
     name: 'mochaccino',
     image: 'mochaccino',
     tags: ['tradicional', 'com leite'],
@@ -69,6 +78,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '10',
     name: 'chocolatequente',
     image: 'chocolatequente',
     tags: ['tradicional', 'com leite'],
@@ -76,6 +86,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '11',
     name: 'cubano',
     image: 'cubano',
     tags: ['especial', 'gelado', 'alcoólico'],
@@ -84,6 +95,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '12',
     name: 'havaiano',
     image: 'havaiano',
     tags: ['especial'],
@@ -91,6 +103,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '13',
     name: 'árabe',
     image: 'arabe',
     tags: ['especial'],
@@ -98,6 +111,7 @@ const mock = [
     price: '9.90',
   },
   {
+    id: '14',
     name: 'irlandes',
     image: 'irlandes',
     tags: ['especial', 'alcoólico'],
@@ -107,6 +121,7 @@ const mock = [
 ];
 
 export const availableCoffes = mock.map((coffe) => ({
+  id: coffe.id,
   name: coffe.name,
   quantity: 0,
   price: Number(coffe.price),
