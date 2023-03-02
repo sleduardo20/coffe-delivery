@@ -11,6 +11,7 @@ export interface Coffe {
 }
 
 export interface CoffeState {
+  id: string;
   name: string;
   quantity: number;
   price: number;
@@ -29,7 +30,9 @@ export const coffeReducer = (state: State, action: Action) => {
       });
     case ACTION_TYPES.REMOVE_FROM_CARD:
       return produce(state, (draft) => {
-        draft.coffes.filter((coffe) => coffe.name !== action.payload.coffename);
+        draft.coffes = draft.coffes.filter(
+          (coffe) => coffe.id !== action.payload.id,
+        );
       });
 
     default: {

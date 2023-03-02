@@ -4,6 +4,7 @@ import { CoffeState, coffeReducer } from '../reducer/coffeReducer';
 
 interface CoffeContextProps {
   coffes: {
+    id: string;
     name: string;
     quantity: number;
     price: number;
@@ -24,8 +25,9 @@ export const CoffesProvider = ({ children }: CoffeProviderProps) => {
 
   const addToCard = (coffe: CoffeState) => dispatch(addToCardAction(coffe));
 
-  const removeFromCard = (coffename: string) =>
-    dispatch(removeFromCardAction(coffename));
+  const removeFromCard = (coffeId: string) => {
+    dispatch(removeFromCardAction(coffeId));
+  };
 
   return (
     <CoffeContextData.Provider
