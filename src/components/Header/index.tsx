@@ -28,8 +28,7 @@ export function Header() {
             onClick={() => navigate('/confirmOrder')}
           >
             <ShoppingCart weight="fill" size={22} />
-
-            <small>{totalCoffes}</small>
+            {totalCoffes > 0 && <small>{totalCoffes}</small>}
           </CardButton>
         </SideRigth>
       </HeaderContainer>
