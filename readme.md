@@ -6,7 +6,7 @@ Project made as challenge 02 of the ignite course.
 ## Demonstração
 
 <p align="center">
-<img style="-webkit-user-select: none;margin: auto;" src="https://im2.ezgif.com/tmp/ezgif-2-de07b26e8d.gif">
+<img style="-webkit-user-select: none;margin: auto;" src="https://raw.githubusercontent.com/sleduardo20/coffe-delivery/main/public/gif.gif">
 </p>
 
 
