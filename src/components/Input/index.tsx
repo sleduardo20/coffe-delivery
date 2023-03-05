@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, useState } from 'react';
 import { InputContainer } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,17 +7,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-export function Input({
-  name,
-  placeholder,
-  type = 'text',
-  checked,
-  id,
-  width,
-  label,
-  icon,
-  ...rest
-}: InputProps) {
+const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  {
+    name,
+    placeholder,
+    type = 'text',
+    checked,
+    id,
+    width,
+    label,
+    icon,
+    ...rest
+  },
+  ref,
+) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <InputContainer
@@ -33,13 +36,14 @@ export function Input({
         </label>
       )}
       <input
-        type={type}
         placeholder={placeholder}
-        name={name}
+        ref={ref}
         {...rest}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
     </InputContainer>
   );
-}
+};
+
+export default forwardRef(Input);

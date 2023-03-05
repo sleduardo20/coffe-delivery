@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Bank,
   CreditCard,
@@ -5,13 +6,15 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react';
-import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import { CoffesSelected } from '../../components/CoffesSelected';
-import { Input } from '../../components/Input';
+import { useForm } from 'react-hook-form';
+import zod from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
+
 import { useCoffesContext } from '../../contexts/useCoffes';
 import { sumCoffeValues } from '../../utils/formatValues';
 
+import { CoffesSelected } from '../../components/CoffesSelected';
 import {
   CoffesSelectedSection,
   ConfirmItems,
@@ -25,9 +28,8 @@ import {
   Title,
   Total,
 } from './styles';
-import zod from 'zod';
-import { useForm, FormProvider } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
+import Input from '../../components/Input';
 
 enum FormPayments {
   MONEY = 'money',
@@ -51,23 +53,21 @@ type CoffeData = zod.infer<typeof coffeDataSchema>;
 export function ConfirmOrder() {
   const [radioInputValue, setRadioInputValue] = useState<FormPayments>();
   const { coffes } = useCoffesContext();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const coffeForm = useForm<CoffeData>({
+  const { handleSubmit, register } = useForm<CoffeData>({
     resolver: zodResolver(coffeDataSchema),
-    defaultValues: {},
   });
 
-  const { handleSubmit, register } = coffeForm;
+  const onSubmit = async (data: CoffeData) => {
+    console.log('data', data);
 
-  const handleCreateOrder = (data: CoffeData) => {
-    console.log(data);
-    // navigate('/confirmedOrder');
+    navigate('/confirmedOrder');
   };
 
   return (
     <ConfirmOrderContainer>
-      <FormWrapper onSubmit={handleSubmit(handleCreateOrder)}>
+      <FormWrapper onSubmit={handleSubmit(onSubmit)}>
         <FinisherOrderSection>
           <h3>Complete seu pedido</h3>
           <DeliverySection>
@@ -110,20 +110,17 @@ export function ConfirmOrder() {
 
             <Field>
               <Input
-                name="01"
                 icon={<CreditCard />}
-                value="credit-card"
                 type="radio"
                 checked={radioInputValue === FormPayments.CREDIT_CARD}
                 label="Cartão de Credito"
+                {...register('payment')}
                 onChange={(e) =>
                   setRadioInputValue(e.target.value as FormPayments)
                 }
               />
               <Input
-                name="02"
                 icon={<Bank />}
-                value="money"
                 type="radio"
                 label="Dinheiro"
                 checked={radioInputValue === FormPayments.MONEY}
@@ -132,9 +129,7 @@ export function ConfirmOrder() {
                 }
               />
               <Input
-                name="03"
                 icon={<Money />}
-                value="debit-card"
                 type="radio"
                 label="Cartão de Débito"
                 checked={radioInputValue === FormPayments.DEBIT_CARD}
