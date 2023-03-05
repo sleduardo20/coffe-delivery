@@ -12,6 +12,7 @@ import {
 } from './styles';
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { useCoffesContext } from '../../contexts/useCoffes';
+import { formatedPrice } from '../../utils/formatValues';
 
 interface Props {
   id: string;
@@ -58,8 +59,7 @@ export function Card({ id, description, image, name, price, tags }: Props) {
 
       <Footer>
         <Price>
-          <span>R$</span>
-          <strong>{price}</strong>
+          <strong>{formatedPrice(price)}</strong>
         </Price>
 
         <ActionButton $emptyQuantity={emptyQuantity}>
