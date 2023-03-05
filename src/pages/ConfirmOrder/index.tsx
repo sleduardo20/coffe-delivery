@@ -6,7 +6,7 @@ import {
   Money,
 } from 'phosphor-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { CoffesSelected } from '../../components/CoffesSelected';
 import { Input } from '../../components/Input';
 import { useCoffesContext } from '../../contexts/useCoffes';
@@ -25,6 +25,9 @@ import {
   Title,
   Total,
 } from './styles';
+import zod from 'zod';
+import { useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 enum FormPayments {
   MONEY = 'money',
@@ -32,18 +35,39 @@ enum FormPayments {
   DEBIT_CARD = 'debit-card',
 }
 
+const coffeDataSchema = zod.object({
+  zipCode: zod.number().min(8, 'Ex.: 00000000'),
+  number: zod.number().min(1),
+  streetName: zod.string(),
+  streetLine2: zod.string(),
+  city: zod.string(),
+  district: zod.string(),
+  state: zod.string().max(2),
+  payment: zod.string(),
+});
+
+type CoffeData = zod.infer<typeof coffeDataSchema>;
+
 export function ConfirmOrder() {
   const [radioInputValue, setRadioInputValue] = useState<FormPayments>();
   const { coffes } = useCoffesContext();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const createOrder = () => {
-    navigate('/confirmedOrder');
+  const coffeForm = useForm<CoffeData>({
+    resolver: zodResolver(coffeDataSchema),
+    defaultValues: {},
+  });
+
+  const { handleSubmit, register } = coffeForm;
+
+  const handleCreateOrder = (data: CoffeData) => {
+    console.log(data);
+    // navigate('/confirmedOrder');
   };
 
   return (
     <ConfirmOrderContainer>
-      <FormWrapper onSubmit={createOrder}>
+      <FormWrapper onSubmit={handleSubmit(handleCreateOrder)}>
         <FinisherOrderSection>
           <h3>Complete seu pedido</h3>
           <DeliverySection>
@@ -55,22 +79,22 @@ export function ConfirmOrder() {
             </Title>
 
             <Field>
-              <Input placeholder="CEP" width={200} />
+              <Input placeholder="CEP" width={200} {...register('zipCode')} />
             </Field>
 
             <Field>
-              <Input placeholder="Rua" />
+              <Input placeholder="Rua" {...register('streetName')} />
             </Field>
 
             <Field>
-              <Input placeholder="Número" type="number" />
-              <Input placeholder="Complemento" />
+              <Input placeholder="Número" {...register('number')} />
+              <Input placeholder="Complemento" {...register('streetLine2')} />
             </Field>
 
             <Field>
-              <Input placeholder="Bairro" />
-              <Input placeholder="Cidade" />
-              <Input placeholder="UF" width={60} />
+              <Input placeholder="Bairro" {...register('district')} />
+              <Input placeholder="Cidade" {...register('city')} />
+              <Input placeholder="UF" width={60} {...register('state')} />
             </Field>
           </DeliverySection>
 
@@ -86,8 +110,8 @@ export function ConfirmOrder() {
 
             <Field>
               <Input
+                name="01"
                 icon={<CreditCard />}
-                name="typePayment"
                 value="credit-card"
                 type="radio"
                 checked={radioInputValue === FormPayments.CREDIT_CARD}
@@ -97,8 +121,8 @@ export function ConfirmOrder() {
                 }
               />
               <Input
+                name="02"
                 icon={<Bank />}
-                name="typePayment"
                 value="money"
                 type="radio"
                 label="Dinheiro"
@@ -108,8 +132,8 @@ export function ConfirmOrder() {
                 }
               />
               <Input
+                name="03"
                 icon={<Money />}
-                name="typePayment"
                 value="debit-card"
                 type="radio"
                 label="Cartão de Débito"
